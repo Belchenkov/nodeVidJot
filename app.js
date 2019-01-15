@@ -9,7 +9,7 @@ const app = express();
 mongoose.Promise = global.Promise;
 
 // Connect to mongoose
-mongoose.connect('mongodb://localhost/vidjot-dev', {
+mongoose.connect('mongodb://yksoft:12qwasZX@ds157834.mlab.com:57834/nodevidjot', {
     useMongoClient: true
 })
 .then(() => console.log('MongoDB Connected ...'))
