@@ -18,10 +18,13 @@
                 </a>
             </div>
             <div>
-                <a href="/ideas/delete/{{id}}" class="btn btn-danger font-weight-bold">
-                    <img src="https://img.icons8.com/office/20/000000/cancel.png">
-                    Delete
-                </a>
+                <form action="/ideas/{{id}}?_method=DELETE" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger font-weight-bold">
+                        <img src="https://img.icons8.com/office/20/000000/cancel.png">
+                        Delete
+                    </button>
+                </form>
             </div>
         </div>
     </div>

@@ -122,6 +122,17 @@ app.put('/ideas/:id', (req, res) => {
         .catch(err => console.error(err))
 });
 
+// Delete Idea
+app.delete('/ideas/:id', (req, res) => {
+    Idea.remove({
+        _id: req.params.id
+    })
+        .then(() => {
+           res.redirect('/ideas');
+        })
+        .catch(err => console.error(err))
+});
+
 const port = 5000;
 
 app.listen(port, () => {
