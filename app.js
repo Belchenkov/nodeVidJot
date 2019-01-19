@@ -50,11 +50,11 @@ app.post('/ideas', (req, res) => {
     let errors = [];
 
     if (!req.body.title) {
-        errors.push({text: 'Please add a title'});
+        errors.push({text: 'Please add a title!'});
     }
 
     if (!req.body.details) {
-        errors.push({text: 'Please add some details'});
+        errors.push({text: 'Please add some details!'});
     }
 
     if (errors.length > 0) {
@@ -64,7 +64,16 @@ app.post('/ideas', (req, res) => {
             details: req.body.details
         });
     } else {
-        res.send('passed')
+        const newIdea = {
+          title: req.body.title,
+          details: req.body.details
+        };
+
+        new Idea(newIdea)
+            .save()
+            .then(idea => {
+                res.redirect('/ideas');
+            })
     }
 });
 
