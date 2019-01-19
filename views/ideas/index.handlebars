@@ -1,0 +1,18 @@
+{{#each ideas}}
+    <div class="card card-body mb-3">
+        <h4>
+            <img src="https://img.icons8.com/office/25/000000/engineering.png">
+            {{ title }}
+            <hr>
+        </h4>
+        <p>
+            <img src="https://img.icons8.com/office/25/000000/document.png">
+            {{ details }}
+        </p>
+    </div>
+{{else}}
+    <p>
+        <img src="https://img.icons8.com/office/25/000000/no-idea.png">
+        No video ideas listed
+    </p>
+{{/each}}

@@ -12,9 +12,8 @@ mongoose.Promise = global.Promise;
 // Connect to mongoose
 mongoose.connect('mongodb://yksoft:12qwasZX@ds157834.mlab.com:57834/nodevidjot', {
     useMongoClient: true
-})
-.then(() => console.log('MongoDB Connected ...'))
-.catch(err => console.log(err));
+}).then(() => console.log('MongoDB Connected ...'))
+  .catch(err => console.log(err));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -38,6 +37,18 @@ app.get('/', (req, res) => {
 // About Page
 app.get('/about', (req, res) => {
     res.render('about');
+});
+
+// Idea Index Page
+app.get('/ideas', (req, res) => {
+    Idea.find({})
+        .sort({date: 'desc'})
+        .then(ideas => {
+            res.render('ideas/index', {
+                ideas
+            });
+        })
+        .catch(err => console.log(err));
 });
 
 // Add Idea Form
