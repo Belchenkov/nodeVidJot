@@ -3,6 +3,7 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override')
 
 const app = express();
 
@@ -19,6 +20,9 @@ mongoose.connect('mongodb://yksoft:12qwasZX@ds157834.mlab.com:57834/nodevidjot',
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
+
+// Method override
+app.use(methodOverride('_method'));
 
 // Load Idea Model
 require('./models/Idea');
@@ -100,6 +104,22 @@ app.post('/ideas', (req, res) => {
                 res.redirect('/ideas');
             })
     }
+});
+
+// Edit Form Process
+app.put('/ideas/:id', (req, res) => {
+    Idea.findOne({
+        _id: req.params.id
+    })
+        .then(idea => {
+            idea.title = req.body.title;
+            idea.details = req.body.details;
+
+            idea.save()
+                .then(() => res.redirect('/ideas'))
+                .catch(err => console.error(err));
+        })
+        .catch(err => console.error(err))
 });
 
 const port = 5000;
