@@ -1,6 +1,6 @@
 {{#each ideas}}
     <div class="card card-body mb-3">
-        <h4>
+        <h4 class="font-weight-bold">
             <img src="https://img.icons8.com/office/25/000000/engineering.png">
             {{ title }}
             <hr>
@@ -9,6 +9,21 @@
             <img src="https://img.icons8.com/office/25/000000/document.png">
             {{ details }}
         </p>
+        <hr>
+        <div class="d-flex">
+            <div class="mr-3">
+                <a href="/ideas/edit/{{id}}" class="btn btn-warning font-weight-bold">
+                    <img src="https://img.icons8.com/office/20/000000/multi-edit.png">
+                    Edit
+                </a>
+            </div>
+            <div>
+                <a href="/ideas/delete/{{id}}" class="btn btn-danger font-weight-bold">
+                    <img src="https://img.icons8.com/office/20/000000/cancel.png">
+                    Delete
+                </a>
+            </div>
+        </div>
     </div>
 {{else}}
     <p>

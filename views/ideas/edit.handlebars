@@ -1,6 +1,6 @@
 {{#each errors}}
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <img src="https://img.icons8.com/office/30/000000/urgent-message.png"> {{ text }}
+        <img src="https://img.icons8.com/office/30/000000/urgent-message.png">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -10,38 +10,39 @@
 
 <div class="card card-body">
     <h3>
-        <img src="https://img.icons8.com/office/30/000000/add-camera.png">
-        Video Idea
+        <img src="https://img.icons8.com/office/30/000000/video-editing.png">
+        Edit Video Idea
     </h3>
 
     <form action="/ideas" class="mt-3" method="post">
         <div class="form-group">
             <label for="title">
-                <img src="https://img.icons8.com/office/20/000000/add-tag.png"> Title
+                <img src="https://img.icons8.com/office/20/000000/ball-point-pen.png"> Title
             </label>
             <input 
                 type="text" 
                 id="title" 
                 class="form-control"
                 name="title"
+                value="{{idea.title}}"
             >
         </div>
 
         <div class="form-group">
             <label for="details">
-                <img src="https://img.icons8.com/office/20/000000/resume.png"> Details
+                <img src="https://img.icons8.com/office/20/000000/edit-property.png"> Details
             </label>
             <textarea 
                 id="details" 
                 class="form-control"
                 name="details"
-            ></textarea>
+            >{{idea.details}}</textarea>
         </div>
 
         <div class="form-group">
             <button class="btn btn-dark">
-                Submit
-                <img src="https://img.icons8.com/office/16/000000/enter-key.png">
+                Edit
+                <img src="https://img.icons8.com/office/16/000000/pencil-tip.png">
             </button>
         </div>
     </form>
