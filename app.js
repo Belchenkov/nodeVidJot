@@ -3,7 +3,9 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+const session = require('express-session');
+const flash = require('connect-flash');
 
 const app = express();
 
@@ -23,6 +25,23 @@ app.use(bodyParser.json());
 
 // Method override
 app.use(methodOverride('_method'));
+
+// Express session
+app.use(session({
+    secret: 'section',
+    resave: false,
+    saveUninitialized: true
+}));
+
+app.use(flash());
+
+// Global variables
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    next();
+});
 
 // Load Idea Model
 require('./models/Idea');
@@ -101,6 +120,7 @@ app.post('/ideas', (req, res) => {
         new Idea(newIdea)
             .save()
             .then(idea => {
+                req.flash('success_msg', 'Success Add!');
                 res.redirect('/ideas');
             })
     }
@@ -116,7 +136,10 @@ app.put('/ideas/:id', (req, res) => {
             idea.details = req.body.details;
 
             idea.save()
-                .then(() => res.redirect('/ideas'))
+                .then(() => {
+                    req.flash('success_msg', 'Success Update!');
+                    res.redirect('/ideas');
+                })
                 .catch(err => console.error(err));
         })
         .catch(err => console.error(err))
@@ -128,6 +151,7 @@ app.delete('/ideas/:id', (req, res) => {
         _id: req.params.id
     })
         .then(() => {
+           req.flash('success_msg', 'Success Remove!');
            res.redirect('/ideas');
         })
         .catch(err => console.error(err))
