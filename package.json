@@ -1,10 +1,11 @@
 {
   "name": "vidjot",
   "version": "1.0.0",
-  "description": "App to create video ideas(Node.js, Express.js, MongoDB, Bootstrap 4 Beta)",
+  "description": "App to create video ideas(Node.js, Express.js, MongoDB, Bootstrap 4",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [
     "Node.js",
@@ -14,12 +15,12 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.1",
+    "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
     "express": "^4.15.4",
     "express-handlebars": "^3.0.0",
-    "express-session": "^1.15.5",
-    "method-override": "^2.3.9",
+    "express-session": "^1.15.6",
+    "method-override": "^2.3.10",
     "mongoose": "^4.11.12",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"

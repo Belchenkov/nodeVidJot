@@ -1,0 +1,36 @@
+{{#each ideas}}
+    <div class="card card-body mb-3">
+        <h4 class="font-weight-bold">
+            <img src="https://img.icons8.com/office/25/000000/engineering.png">
+            {{ title }}
+            <hr>
+        </h4>
+        <p>
+            <img src="https://img.icons8.com/office/25/000000/document.png">
+            {{ details }}
+        </p>
+        <hr>
+        <div class="d-flex">
+            <div class="mr-3">
+                <a href="/ideas/edit/{{id}}" class="btn btn-warning font-weight-bold">
+                    <img src="https://img.icons8.com/office/20/000000/multi-edit.png">
+                    Edit
+                </a>
+            </div>
+            <div>
+                <form action="/ideas/{{id}}?_method=DELETE" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger font-weight-bold">
+                        <img src="https://img.icons8.com/office/20/000000/cancel.png">
+                        Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+{{else}}
+    <p>
+        <img src="https://img.icons8.com/office/25/000000/no-idea.png">
+        No video ideas listed
+    </p>
+{{/each}}
