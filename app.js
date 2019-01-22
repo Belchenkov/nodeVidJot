@@ -27,6 +27,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+// Static folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Method override
 app.use(methodOverride('_method'));
 
