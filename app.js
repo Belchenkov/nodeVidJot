@@ -9,6 +9,10 @@ const flash = require('connect-flash');
 
 const app = express();
 
+// Load routers
+const ideas = require('./routes/ideas');
+const users = require('./routes/users');
+
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
 
@@ -43,10 +47,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// Load Idea Model
-require('./models/Idea');
-const Idea = mongoose.model('ideas');
-
 // Handlebars Middleware
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -62,103 +62,11 @@ app.get('/about', (req, res) => {
     res.render('about');
 });
 
-// Idea Index Page
-app.get('/ideas', (req, res) => {
-    Idea.find({})
-        .sort({date: 'desc'})
-        .then(ideas => {
-            res.render('ideas/index', {
-                ideas
-            });
-        })
-        .catch(err => console.log(err));
-});
-
-// Add Idea Form
-app.get('/ideas/add', (req, res) => {
-    res.render('ideas/add');
-});
-
-// Edit Idea Form
-app.get('/ideas/edit/:id', (req, res) => {
-    Idea.findOne({
-        _id: req.params.id
-    })
-        .then(idea => {
-            res.render('ideas/edit', {
-                idea
-            });
-        })
-        .catch(err => console.log(err));
-});
-
-
-// Process Form
-app.post('/ideas', (req, res) => {
-    let errors = [];
-
-    if (!req.body.title) {
-        errors.push({text: 'Please add a title!'});
-    }
-
-    if (!req.body.details) {
-        errors.push({text: 'Please add some details!'});
-    }
-
-    if (errors.length > 0) {
-        res.render('ideas/add', {
-            errors,
-            title: req.body.title,
-            details: req.body.details
-        });
-    } else {
-        const newIdea = {
-          title: req.body.title,
-          details: req.body.details
-        };
-
-        new Idea(newIdea)
-            .save()
-            .then(idea => {
-                req.flash('success_msg', 'Success Add!');
-                res.redirect('/ideas');
-            })
-    }
-});
-
-// Edit Form Process
-app.put('/ideas/:id', (req, res) => {
-    Idea.findOne({
-        _id: req.params.id
-    })
-        .then(idea => {
-            idea.title = req.body.title;
-            idea.details = req.body.details;
-
-            idea.save()
-                .then(() => {
-                    req.flash('success_msg', 'Success Update!');
-                    res.redirect('/ideas');
-                })
-                .catch(err => console.error(err));
-        })
-        .catch(err => console.error(err))
-});
-
-// Delete Idea
-app.delete('/ideas/:id', (req, res) => {
-    Idea.remove({
-        _id: req.params.id
-    })
-        .then(() => {
-           req.flash('success_msg', 'Success Remove!');
-           res.redirect('/ideas');
-        })
-        .catch(err => console.error(err))
-});
+// Use routes
+app.use('/ideas', ideas);
+app.use('/users', users);
 
 const port = 5000;
-
 app.listen(port, () => {
     console.log(`Server started on port http://localhost:${port}`);
 });
