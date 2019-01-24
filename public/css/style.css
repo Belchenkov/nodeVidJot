@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous|Titillium+Web:400,700');
+
+body {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 16px;
+}
+
+input,
+textarea {
+    font-size: 16px!important;
+}
+
+.navbar-brand {
+    font-family: 'Righteous', cursive;
+    font-weight: bold;
+    font-size: 1.7rem;
+    text-shadow: 0 0 14px #000;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.left-nav-link,
+.nav-link.dropdown-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.left-nav-link img,
+.nav-link.dropdown-toggle img {
+    margin-right: 3px;
+}
+
+.logo {
+    width: 130px;
+    margin: auto;
+}

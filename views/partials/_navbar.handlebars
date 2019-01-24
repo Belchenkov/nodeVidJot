@@ -31,27 +31,48 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-          <a 
-            href="#" 
-            class="nav-link dropdown-toggle"
-            data-toggle="dropdown"
-            id="navbarDropdownMenuLink"
-          >
-              <img src="https://img.icons8.com/office/16/000000/photo-reel.png">
-              Video Ideas
-          </a>
-          <div class="dropdown-menu">
-            <a href="/ideas" class="dropdown-item">
-                <img src="https://img.icons8.com/office/16/000000/idea.png">
-                Ideas
-            </a>
-            <a href="/ideas/add" class="dropdown-item">
-                <img src="https://img.icons8.com/office/16/000000/plus.png">
-                Add Ideas
-            </a>
-          </div>
-        </li>
+        {{#if user}}
+            <li class="nav-item dropdown ml-3">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-toggle="dropdown"
+                id="navbarDropdownMenuLink"
+                >
+                    <img src="https://img.icons8.com/office/16/000000/photo-reel.png">
+                    Video Ideas
+                </a>
+                <div class="dropdown-menu">
+                    <a href="/ideas" class="dropdown-item">
+                        <img src="https://img.icons8.com/office/16/000000/idea.png">
+                        Ideas
+                    </a>
+                    <a href="/ideas/add" class="dropdown-item">
+                        <img src="https://img.icons8.com/office/16/000000/plus.png">
+                        Add Ideas
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="/users/login" class="nav-link">
+                    <img src="https://img.icons8.com/office/16/000000/shutdown.png">
+                    Logout
+                </a>
+            </li>
+        {{else}}
+            <li class="nav-item">
+                <a href="/users/login" class="nav-link">
+                    <img src="https://img.icons8.com/office/16/000000/gender-neutral-user.png">
+                    Login
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/users/register" class="nav-link">
+                    <img src="https://img.icons8.com/office/16/000000/edit-user-male.png">
+                    Register
+                </a>
+            </li>
+        {{/if}}
       </ul>
     </div>
   </div>
