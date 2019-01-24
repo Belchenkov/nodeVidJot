@@ -31,19 +31,8 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <a href="/users/login" class="nav-link">
-                <img src="https://img.icons8.com/office/16/000000/gender-neutral-user.png">
-                Login
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="/users/register" class="nav-link">
-                <img src="https://img.icons8.com/office/16/000000/edit-user-male.png">
-                Register
-            </a>
-        </li>
-        <li class="nav-item dropdown ml-3">
+        {{#if user}}
+            <li class="nav-item dropdown ml-3">
           <a 
             href="#" 
             class="nav-link dropdown-toggle"
@@ -64,6 +53,20 @@
             </a>
           </div>
         </li>
+        {{else}}
+            <li class="nav-item">
+                <a href="/users/login" class="nav-link">
+                    <img src="https://img.icons8.com/office/16/000000/gender-neutral-user.png">
+                    Login
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/users/register" class="nav-link">
+                    <img src="https://img.icons8.com/office/16/000000/edit-user-male.png">
+                    Register
+                </a>
+            </li>
+        {{/if}}
       </ul>
     </div>
   </div>
