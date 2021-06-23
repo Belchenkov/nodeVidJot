@@ -21,7 +21,7 @@ require('./config/passport')(passport);
 mongoose.Promise = global.Promise;
 
 // Connect to mongoose
-mongoose.connect('mongodb://yksoft:12qwasZX@ds157834.mlab.com:57834/nodevidjot', {
+mongoose.connect('mongodb://admin:12qwasZX@cluster0-shard-00-00.y7thg.mongodb.net:27017,cluster0-shard-00-01.y7thg.mongodb.net:27017,cluster0-shard-00-02.y7thg.mongodb.net:27017/vid-jot?ssl=true&replicaSet=atlas-8u9n28-shard-0&authSource=admin&retryWrites=true&w=majority', {
     useMongoClient: true
 }).then(() => console.log('MongoDB Connected ...'))
   .catch(err => console.log(err));
